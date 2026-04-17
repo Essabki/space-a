@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>3D Solar System</title>
+<script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
+
+<style>
+body { margin:0; overflow:hidden; background:black; }
+
+.instructions {
+    position:absolute;
+    top:10px;
+    right:10px;
+    color:white;
+    font-family:Arial;
+    font-size:14px;
+}
+
+.btn{
+    position:absolute;
+    top:10px;
+    left:10px;
+    background: transparent;
+    border: 1px solid white;
+    color: white;
+    border-radius: 12px;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    position: relative;
+}
+
+.btn::before {
+    content: attr(data-hover); /* Uses data-hover text */
+    position: absolute;
+    bottom: -30px;
+    left: 50px;
+    transform: translateX(-50%);
+    background: #333;
+    color: white;
+    padding: 6px 10px;
+    border-radius: 4px;
+    font-size: 12px;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.1s ease;
+    margin-bottom: 5px;
+    z-index: 10;
+}
+
+.btn:hover::before {
+    opacity: 1;
+}
+</style>
+</head>
+<body>
+<a href="data/planet-info/index.html"><button class="btn" data-hover="Planet information">?</button></a>
+<div class="instructions">
+🖱️ Left drag: Orbit | Right drag: Pan | Scroll: Zoom
+</div>
+
+<script src="data/solar-system/script.js"></script>
+</body>
+</html>
