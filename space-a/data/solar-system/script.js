@@ -147,7 +147,7 @@ const jupiter=createPlanet(2,"https://raw.githubusercontent.com/OZ-00MS/source/r
 const saturn=createPlanet(1.7,"https://raw.githubusercontent.com/OZ-00MS/source/refs/heads/main/space%20a/planet/saturn.jpg",23,0.008);
 const uranus=createPlanet(1.2,"https://raw.githubusercontent.com/OZ-00MS/source/refs/heads/main/space%20a/planet/uranus.jpg",28,0.006);
 const neptune=createPlanet(1.2,"https://raw.githubusercontent.com/OZ-00MS/source/refs/heads/main/space%20a/planet/neptune.jpg",32,0.005);
-const pluto=createPlanet(0.4,"https://raw.githubusercontent.com/OZ-00MS/source/refs/heads/main/space%20a/planet/haumea.jpg",38,0.003);
+const pluto=createPlanet(0.4,"https://raw.githubusercontent.com/Essabki/space-a/refs/heads/main/space-a/data/planet-info/pic/plutomap2k.jpg",38,0.003);
 
 // 🌙 MOONS
 function createMoon(planet,size,dist,speed,texture){
