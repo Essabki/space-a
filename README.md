@@ -6,6 +6,10 @@ It features interactive planets, mouse control, and educational planet informati
 
 
 
+https://github.com/user-attachments/assets/c5ceea54-1bb2-4a83-8391-f56dba396628
+
+
+
 
 
 
