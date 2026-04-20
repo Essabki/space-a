@@ -1,11 +1,10 @@
-//Earth
 const container = document.getElementById('earth-container');
 const planetContainer = document.getElementById('planet-container');
 
 let isDragging = false;
 let previousMouseX = 0;
 let previousMouseY = 0;
-let isAutoRotate = false; // now single-click toggle
+let isAutoRotate = false;
 
 // 🌍 Renderer
 const earthRenderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
@@ -23,7 +22,7 @@ const earthCamera = new THREE.PerspectiveCamera(
 );
 earthCamera.position.z = 2.8;
 
-// 🌍 Earth
+// 🪐 PLANET (Uranus texture)
 const geometry = new THREE.SphereGeometry(1.4, 64, 64);
 const textureLoader = new THREE.TextureLoader();
 
@@ -31,26 +30,13 @@ const earthTexture = textureLoader.load(
     "https://raw.githubusercontent.com/OZ-00MS/source/refs/heads/main/space%20a/planet/uranus.jpg"
 );
 
-const material = new THREE.MeshStandardMaterial({
-    map: earthTexture,
-    roughness: 0.7,
-    metalness: 0.02
+// ✅ no light needed
+const material = new THREE.MeshBasicMaterial({
+    map: earthTexture
 });
 
 const earth = new THREE.Mesh(geometry, material);
 earthScene.add(earth);
-
-// 💡 Lighting
-const ambientLight = new THREE.AmbientLight(0x88aaff, 0.8);
-earthScene.add(ambientLight);
-
-const directionalLight = new THREE.DirectionalLight(0xffffff, 2.5);
-directionalLight.position.set(5, 3, 5);
-earthScene.add(directionalLight);
-
-const pointLight = new THREE.PointLight(0xffffff, 2.0);
-pointLight.position.set(-5, -3, -5);
-earthScene.add(pointLight);
 
 // 🖱️ DRAG ROTATION
 planetContainer.addEventListener('mousedown', (event) => {
@@ -76,23 +62,20 @@ document.addEventListener('mouseup', () => {
     isDragging = false;
 });
 
-// 🖱️ SINGLE CLICK → TOGGLE AUTO ROTATE
+// 🔁 AUTO ROTATE
 planetContainer.addEventListener('click', () => {
     isAutoRotate = !isAutoRotate;
-    console.log(isAutoRotate ? 'Rotate ON' : 'Rotate OFF');
 });
 
-// 🔍 ZOOM (mouse wheel)
+// 🔍 ZOOM
 planetContainer.addEventListener('wheel', (event) => {
     event.preventDefault();
 
     earthCamera.position.z += event.deltaY * 0.002;
-
-    // limit zoom
     earthCamera.position.z = Math.max(1.8, Math.min(5, earthCamera.position.z));
 });
 
-// 📏 Resize
+// 📏 RESIZE
 function handleResize() {
     const width = container.clientWidth;
     const height = container.clientHeight;
@@ -103,7 +86,7 @@ function handleResize() {
 }
 window.addEventListener('resize', handleResize);
 
-// 🔄 Animation
+// 🔄 ANIMATION
 function animate() {
     requestAnimationFrame(animate);
 

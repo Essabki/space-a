@@ -24,30 +24,19 @@ camera.position.z = 3.2;
 
 // 🪐 SATURN PLANET
 const saturnGeometry = new THREE.SphereGeometry(1.4, 64, 64);
+
 const textureLoader = new THREE.TextureLoader();
 const saturnTexture = textureLoader.load(
     "https://raw.githubusercontent.com/OZ-00MS/source/refs/heads/main/space%20a/planet/eris.jpg"
 );
 
-const saturnMaterial = new THREE.MeshStandardMaterial({
-    map: saturnTexture,
-    roughness: 0.6,
-    metalness: 0.1
+// ✅ NO LIGHT MATERIAL
+const saturnMaterial = new THREE.MeshBasicMaterial({
+    map: saturnTexture
 });
+
 const saturn = new THREE.Mesh(saturnGeometry, saturnMaterial);
 scene.add(saturn);
-
-// 💡 Lighting
-const ambientLight = new THREE.AmbientLight(0x88aaff, 0.6);
-scene.add(ambientLight);
-
-const directionalLight = new THREE.DirectionalLight(0xffffff, 2.2);
-directionalLight.position.set(5, 3, 5);
-scene.add(directionalLight);
-
-const pointLight = new THREE.PointLight(0xffffff, 1.5, 100);
-pointLight.position.set(-5, -3, -5);
-scene.add(pointLight);
 
 // 🖱️ FULL MOUSE CONTROL
 planetContainer.addEventListener('mousedown', (event) => {
@@ -58,13 +47,13 @@ planetContainer.addEventListener('mousedown', (event) => {
 
 document.addEventListener('mousemove', (event) => {
     if (!isDragging) return;
-    
+
     const deltaX = event.clientX - previousMouseX;
     const deltaY = event.clientY - previousMouseY;
-    
+
     saturn.rotation.y += deltaX * 0.01;
     saturn.rotation.x += deltaY * 0.01;
-    
+
     previousMouseX = event.clientX;
     previousMouseY = event.clientY;
 });
@@ -75,24 +64,27 @@ document.addEventListener('mouseup', () => {
 
 planetContainer.addEventListener('click', () => {
     isAutoRotate = !isAutoRotate;
-    console.log(isAutoRotate ? '🪐 Auto-rotate ON' : '🪐 Auto-rotate OFF');
 });
 
+// 🔍 ZOOM
 planetContainer.addEventListener('wheel', (event) => {
     event.preventDefault();
     camera.position.z += event.deltaY * 0.002;
     camera.position.z = Math.max(2.0, Math.min(5, camera.position.z));
 });
 
+// 📏 Resize
 function handleResize() {
     const width = container.clientWidth;
     const height = container.clientHeight;
+
     renderer.setSize(width, height);
     camera.aspect = width / height;
     camera.updateProjectionMatrix();
 }
 window.addEventListener('resize', handleResize);
 
+// 🔄 Animation
 function animate() {
     requestAnimationFrame(animate);
 
