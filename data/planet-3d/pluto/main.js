@@ -27,7 +27,7 @@ const geometry = new THREE.SphereGeometry(1.4, 64, 64);
 
 const textureLoader = new THREE.TextureLoader();
 const texture = textureLoader.load(
-    "https://raw.githubusercontent.com/Essabki/space-a/refs/heads/main/space-a/data/planet-info/pic/plutomap2k.jpg"
+    "https://raw.githubusercontent.com/Essabki/space-a/refs/heads/main/data/planet-3d/pluto/pic/plutomap2k.jpg"
 );
 
 // ✅ NO LIGHT MATERIAL

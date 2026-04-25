@@ -452,7 +452,7 @@ earthCloudsCamera.position.z = 3;
 
 // Textures
 const earthCloudsTextureLoader = new THREE.TextureLoader();
-const cloudTextureMap = earthCloudsTextureLoader.load("https://raw.githubusercontent.com/Essabki/space-a/refs/heads/main/space-a/data/planet-info/pic/plutomap2k.jpg"); // Transparent PNG clouds
+const cloudTextureMap = earthCloudsTextureLoader.load("https://raw.githubusercontent.com/Essabki/space-a/refs/heads/main/data/planet-3d/pluto/pic/plutomap2k.jpg"); // Transparent PNG clouds
 
 // Geometry & Material
 const cloudSphereGeometry = new THREE.SphereGeometry(1.13, 64, 64); // Slightly larger than Earth
